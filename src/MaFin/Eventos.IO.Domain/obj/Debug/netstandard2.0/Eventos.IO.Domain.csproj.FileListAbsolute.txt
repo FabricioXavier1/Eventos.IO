@@ -1,0 +1,12 @@
+C:\Users\fabricio.xavier\source\repos\MaFin\src\MaFin\Eventos.IO.Domain\bin\Debug\netstandard2.0\Eventos.IO.Domain.deps.json
+C:\Users\fabricio.xavier\source\repos\MaFin\src\MaFin\Eventos.IO.Domain\bin\Debug\netstandard2.0\Eventos.IO.Domain.dll
+C:\Users\fabricio.xavier\source\repos\MaFin\src\MaFin\Eventos.IO.Domain\bin\Debug\netstandard2.0\Eventos.IO.Domain.pdb
+C:\Users\fabricio.xavier\source\repos\MaFin\src\MaFin\Eventos.IO.Domain\bin\Debug\netstandard2.0\Eventos.IO.Domain.Core.dll
+C:\Users\fabricio.xavier\source\repos\MaFin\src\MaFin\Eventos.IO.Domain\bin\Debug\netstandard2.0\Eventos.IO.Domain.Core.pdb
+C:\Users\fabricio.xavier\source\repos\MaFin\src\MaFin\Eventos.IO.Domain\obj\Debug\netstandard2.0\Eventos.IO.Domain.csprojAssemblyReference.cache
+C:\Users\fabricio.xavier\source\repos\MaFin\src\MaFin\Eventos.IO.Domain\obj\Debug\netstandard2.0\Eventos.IO.Domain.csproj.CoreCompileInputs.cache
+C:\Users\fabricio.xavier\source\repos\MaFin\src\MaFin\Eventos.IO.Domain\obj\Debug\netstandard2.0\Eventos.IO.Domain.AssemblyInfoInputs.cache
+C:\Users\fabricio.xavier\source\repos\MaFin\src\MaFin\Eventos.IO.Domain\obj\Debug\netstandard2.0\Eventos.IO.Domain.AssemblyInfo.cs
+C:\Users\fabricio.xavier\source\repos\MaFin\src\MaFin\Eventos.IO.Domain\obj\Debug\netstandard2.0\Eventos.IO.Domain.csproj.CopyComplete
+C:\Users\fabricio.xavier\source\repos\MaFin\src\MaFin\Eventos.IO.Domain\obj\Debug\netstandard2.0\Eventos.IO.Domain.dll
+C:\Users\fabricio.xavier\source\repos\MaFin\src\MaFin\Eventos.IO.Domain\obj\Debug\netstandard2.0\Eventos.IO.Domain.pdb
