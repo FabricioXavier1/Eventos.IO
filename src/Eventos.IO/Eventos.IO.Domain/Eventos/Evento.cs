@@ -20,22 +20,10 @@ namespace Eventos.IO.Domain.Eventos
             Valor = valor;
             Online = online;
             NomeEmpresa = nomeEmpresa;
-
-            ErrosValidacao = new Dictionary<string, string>();
-
-            if (nome.Length < 3)
-                ErrosValidacao.Add("Nome", "O nome não pode possuir menos de 3 caracteres");
-
-            if (gratuito && valor != 0)
-                ErrosValidacao.Add("Valor", "Não pode ter valor se é gratuito");
-
-            if (ErrosValidacao.Any())
-                throw new Exception("Há erros na construção ");
         }
 
         #region Propriedades
-
-
+        
         public string Nome { get; set; }
         public string DescricaoCurta { get; set; }
         public string DescricaoLonga { get; set; }
@@ -49,13 +37,12 @@ namespace Eventos.IO.Domain.Eventos
         public ICollection<Tags> Tags { get; set; }
         public Endereco Endereco { get; set; }
         public Organizador Organizador { get; set; }
-        public Dictionary<string, string> ErrosValidacao { get; set; }
 
         #endregion
 
         public override bool EhValido()
         {
-            return ErrosValidacao.Any();
+            return ValidationResult.IsValid;
         }
 
         private void Validar()
