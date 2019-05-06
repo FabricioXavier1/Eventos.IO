@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Eventos.IO.Domain.Interfaces
 {
-    interface IRepository<TEntity> : IDisposable where TEntity : Entity<TEntity>
+    public interface IRepository<TEntity> : IDisposable where TEntity : Entity<TEntity>
     {
         void Add(TEntity obj);
 
