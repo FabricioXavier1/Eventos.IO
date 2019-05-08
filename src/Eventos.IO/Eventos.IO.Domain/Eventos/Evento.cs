@@ -22,8 +22,13 @@ namespace Eventos.IO.Domain.Eventos
             NomeEmpresa = nomeEmpresa;
         }
 
+        private Evento()
+        {
+
+        }
+
         #region Propriedades
-        
+
         public string Nome { get; set; }
         public string DescricaoCurta { get; set; }
         public string DescricaoLonga { get; set; }
@@ -42,6 +47,7 @@ namespace Eventos.IO.Domain.Eventos
 
         public override bool EhValido()
         {
+            Validar();
             return ValidationResult.IsValid;
         }
 
@@ -54,6 +60,8 @@ namespace Eventos.IO.Domain.Eventos
             ValidarNomeEmpresa();
             ValidationResult = Validate(this);
         }
+
+        #region Validações
 
         private void ValidarNome()
         {
@@ -96,6 +104,32 @@ namespace Eventos.IO.Domain.Eventos
             RuleFor(c => c.NomeEmpresa)
                 .NotEmpty().WithMessage("O nome do organizador deve ser preenchido")
                 .Length(2, 150).WithMessage("O nome do organizador deve ter entre 2 e 150 caracteres");
+        }
+        #endregion
+
+        public static class EventoFactory
+        {
+            public static Evento NovoEventoCompleto(Guid id, string nome, string descCurta, string descLonga, DateTime dataInicio, DateTime dataFim, bool gratuito, decimal valor, bool online, string nomeEmpresa, Guid? organizadorId)
+            {
+                var evento = new Evento()
+                {
+                    Id = Guid.NewGuid(),
+                    Nome = nome,
+                    DataInicio = dataInicio,
+                    DescricaoCurta = descCurta,
+                    DescricaoLonga = descLonga,
+                    DataFim = dataFim,
+                    Gratuito = gratuito,
+                    Valor = valor,
+                    Online = online,
+                    NomeEmpresa = nomeEmpresa,
+                };
+
+                if (organizadorId != null)
+                    evento.Organizador = new Organizador(organizadorId.Value);
+
+                return evento;
+            }
         }
     }
 }
