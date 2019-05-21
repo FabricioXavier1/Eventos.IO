@@ -40,8 +40,8 @@ namespace Eventos.IO.Domain.Eventos
         public override bool EhValido()
         {
             RuleFor(c => c.Logradouro)
-                            .NotEmpty().WithMessage("O Logradouro precisa ser fornecido")
-                            .Length(2, 150).WithMessage("O Logradouro precisa ter entre 2 e 150 caracteres");
+                .NotEmpty().WithMessage("O Logradouro precisa ser fornecido")
+                .Length(2, 150).WithMessage("O Logradouro precisa ter entre 2 e 150 caracteres");
 
             RuleFor(c => c.Bairro)
                 .NotEmpty().WithMessage("O Bairro precisa ser fornecido")

@@ -8,17 +8,17 @@ namespace Eventos.IO.Domain.Interfaces
 {
     public interface IRepository<TEntity> : IDisposable where TEntity : Entity<TEntity>
     {
-        void Add(TEntity obj);
+        void Adicionar(TEntity obj);
 
-        TEntity GetById(Guid id);
+        TEntity ObterPorId(Guid id);
 
-        IEnumerable<TEntity> GetAll();
+        IEnumerable<TEntity> ObterTodos();
 
-        void Update(TEntity obj);
+        void Atualizar(TEntity obj);
 
-        void Remove(Guid id);
+        void Remover(Guid id);
 
-        IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
+        IEnumerable<TEntity> Buscar(Expression<Func<TEntity, bool>> predicate);
 
         int SaveChanges();
     }

@@ -42,6 +42,7 @@ namespace Eventos.IO.Domain.Eventos
         public Guid? CategoriaId { get; private set; }
         public Guid? EnderecoId { get; private set; }
         public Guid OrganizadorId { get; private set; }
+        public bool Excluido { get; set; }
 
 
         // EF propriedades de navegação.
@@ -50,6 +51,25 @@ namespace Eventos.IO.Domain.Eventos
         public virtual Organizador Organizador { get; private set; }
 
         #endregion
+
+        public void AtribuirEndereco(Endereco endereco)
+        {
+            if (!endereco.EhValido()) return;
+
+            Endereco = endereco;
+        }
+
+        public void AtribuirCategoria(Categoria categoria)
+        {
+            if (categoria.EhValido()) return;
+            Categoria = categoria;
+        }
+
+        public void ExcluirEvento()
+        {
+            //TODO: validar regras
+            Excluido = true;
+        }
 
         public override bool EhValido()
         {
@@ -65,6 +85,10 @@ namespace Eventos.IO.Domain.Eventos
             ValidarLocal();
             ValidarNomeEmpresa();
             ValidationResult = Validate(this);
+
+            // Validações adicionais
+
+            ValidarEndereco();
         }
 
         #region Validações
@@ -111,11 +135,24 @@ namespace Eventos.IO.Domain.Eventos
                 .NotEmpty().WithMessage("O nome do organizador deve ser preenchido")
                 .Length(2, 150).WithMessage("O nome do organizador deve ter entre 2 e 150 caracteres");
         }
+
+        private void ValidarEndereco()
+        {
+            if (Online) return;
+            if (Endereco.EhValido()) return;
+
+            foreach (var error in Endereco.ValidationResult.Errors)
+            {
+                ValidationResult.Errors.Add(error);
+            }
+        }
+
         #endregion
 
         public static class EventoFactory
         {
-            public static Evento NovoEventoCompleto(Guid id, string nome, string descCurta, string descLonga, DateTime dataInicio, DateTime dataFim, bool gratuito, decimal valor, bool online, string nomeEmpresa, Guid? organizadorId)
+            public static Evento NovoEventoCompleto(Guid id, string nome, string descCurta, string descLonga, DateTime dataInicio, DateTime dataFim, bool gratuito, 
+                decimal valor, bool online, string nomeEmpresa, Guid? organizadorId, Endereco endereco, Guid categoriaId)
             {
                 var evento = new Evento()
                 {
@@ -129,10 +166,16 @@ namespace Eventos.IO.Domain.Eventos
                     Valor = valor,
                     Online = online,
                     NomeEmpresa = nomeEmpresa,
+                    Endereco = endereco,
+                    CategoriaId = categoriaId,
                 };
 
                 if (organizadorId != null)
                     evento.Organizador = new Organizador(organizadorId.Value);
+
+                if (online)
+                    evento.Endereco = null;
+
 
                 return evento;
             }
